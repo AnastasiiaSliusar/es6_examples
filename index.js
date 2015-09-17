@@ -9,17 +9,17 @@ WHERE news_id=150000`;
 console.log('qs_variant_1--->',qs);  
 
 
-/** variant 2
+// variant 2
 var table='news_common.news',
 fields='news_id,author_id,add_date',
  qs='SELECT '+fields+'FROM '+table+ 
 ' WHERE news_id=150000';
 console.log('qs_variant_2--->',qs); 
-*/
 
 
 
-/**Expression interpolation
+
+//Expression interpolation
 
 var object={
     prop1:0.49,
@@ -30,11 +30,11 @@ var object={
 },
 result=`The result is ${(object.prop1+object.prop2+object.prop3+object.prop4+(object.prop5<0.5?object.prop5:0))/(object.prop5<0.5?5:4)}. The end`;
 console.log('result-->',result);
-*/
 
 
 
-/**Tagged template
+
+//Tagged template
 
 //Raw string 
 function exampleTaggedTemplate(templateObject,expressions1,expressions2) {
@@ -60,7 +60,7 @@ function probaFunction(tmplObj,substs) {
 probaFunction`Proba1 ${3+3}`;
 probaFunction`Proba2 \${3+3}`;
 probaFunction`Proba3 \\${3+3}`;
-console.log('fff-->',`\n`);
-*/
+
+
 
 
