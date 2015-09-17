@@ -8,7 +8,65 @@
  }else{
      console.log('no');
  }
+ 
+//обчислювальні властивості об'єкта
+  const MY_KEY = Symbol();
+   let obj = {};
 
+   obj[MY_KEY] = 123;
+   console.log(obj[MY_KEY]);
+  
+   const FOO = Symbol();
+     let obj = {
+      [FOO](a) {
+       console.log('a-->',a);
+       return 'bar';
+      }
+     },
+      b=1234;
+     console.log(obj[FOO](b)); 
+     
+//iterability
+  let obj = {
+   data: [ 'hello', 'world' ],
+   [Symbol.iterator]() {
+    const self = this;
+    let index = 0;
+    return {
+     next() {
+      if (index < self.data.length) {
+       return {
+        value: self.data[index++]
+       };
+      } else {
+       return { done: true };
+      }
+     }
+    };
+   }
+  };
+
+ for (let item of obj ){
+     console.log('item-->',item);
+ }
+
+/**
+Property keys - string or symbols
+String-value keys - property name
+Symbol-value keys - symbol property
+*/
+   let obj = {
+      [Symbol('my_key')]: 1,
+      enum: 2,
+      nonEnum: 3
+     };
+   
+  console.log(Object.defineProperty(obj,'nonEnum', { enumerable: false }));
+  //console.log(Object.getOwnPropertyNames(obj));
+  //console.log(Object.getOwnPropertySymbols(obj));
+  //console.log(Object.keys(obj));
+ 
+ 
 //new Symbol() - буде помилка
 
  var sym1 = Symbol(),
@@ -33,70 +91,6 @@
  for (var i in obj) {
     console.log(i); 
  }
- 
-//обчислювальні властивості об'єкта
-  const MY_KEY = Symbol();
-   let obj = {};
-
-   obj[MY_KEY] = 123;
-   console.log(obj[MY_KEY]);
-  
-   const FOO = Symbol();
-     let obj = {
-      [FOO](a) {
-       console.log('a-->',a);
-       return 'bar';
-      }
-     },
-      b=1234;
-     console.log(obj[FOO](b)); 
-  
-
-/*
-Property keys - string or symbols
-String-value keys - property name
-Symbol-value keys - symbol property
-*/
-  
-   let obj = {
-      [Symbol('my_key')]: 1,
-      enum: 2,
-      nonEnum: 3
-     };
-   
-  console.log(Object.defineProperty(obj,'nonEnum', { enumerable: false }));
-  //console.log(Object.getOwnPropertyNames(obj));
-  //console.log(Object.getOwnPropertySymbols(obj));
-  //console.log(Object.keys(obj));
- 
- //iterability
-  let obj = {
-   data: [ 'hello', 'world' ],
-   [Symbol.iterator]() {
-    const self = this;
-    let index = 0;
-    return {
-     next() {
-      if (index < self.data.length) {
-       return {
-        value: self.data[index++]
-       };
-      } else {
-       return { done: true };
-      }
-     }
-    };
-   }
-  };
-
- for (let item of obj ){
-     console.log('item-->',item);
- }
-
- //global symbol register
- let sym = Symbol.for('Hello everybody!');
- console.log('sym-->',sym);
- console.log(Symbol.keyFor(sym));
 
  //Property access via [ ]
  const sym = Symbol('yes');
@@ -121,3 +115,8 @@ let obj = { [MY_SYMBOL]: 123 };
 
 let str = JSON.stringify(obj, symbolReplacer);
 console.log(str);
+
+//global symbol register
+ let sym = Symbol.for('Hello everybody!');
+ console.log('sym-->',sym);
+ console.log(Symbol.keyFor(sym));
