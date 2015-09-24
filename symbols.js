@@ -103,18 +103,6 @@ Symbol-value keys - symbol property
  let wrappedString = new String('str');
  console.log(typeof wrappedString);
  
-//JSON ans symbol 
-function symbolReplacer(key, value) {
-    if (typeof value === 'symbol') {
-        return '@@' + Symbol.keyFor(value) + '@@';
-    }
-    return value;
-}
-const MY_SYMBOL = Symbol.for('http://example.com/my_symbol');
-let obj = { [MY_SYMBOL]: 123 };
-
-let str = JSON.stringify(obj, symbolReplacer);
-console.log(str);
 
 //global symbol register
  let sym = Symbol.for('Hello everybody!');
