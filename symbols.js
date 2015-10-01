@@ -100,8 +100,6 @@ Symbol-value keys - symbol property
  };
  let wrappedSymbol = Object(sym);
  console.log(typeof wrappedSymbol);
- let wrappedString = new String('str');
- console.log(typeof wrappedString);
  
 
 //global symbol register
